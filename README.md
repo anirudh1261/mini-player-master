@@ -40,7 +40,7 @@ Method 1: Run Locally
 
 Download or clone the repository:
 
-git clone https://github.com/your-username/mini-player.git
+git clone https://github.com/anirudh1261/mini-player-master
 
 Open the project folder.
 
