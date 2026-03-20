@@ -1,4 +1,4 @@
-🎵 Mini Player – Lightweight Web Music Player
+🎵 Mini Player – Lightweight Web Music Players
 
 A simple and responsive Mini Music Player built using modern web technologies.
 This project allows users to play, pause, skip, and control audio tracks with a clean and user-friendly interface.
