@@ -8,6 +8,9 @@ new Vue({
       duration: null,
       currentTime: null,
       isTimerPlaying: false,
+      volume: 0.8,
+      isMuted: false,
+      previousVolume: 0.8,
       tracks: [
         {
           name: "Mekanın Sahibi",
@@ -86,6 +89,14 @@ new Vue({
       currentTrackIndex: 0,
       transitionName: null
     };
+  },
+  computed: {
+    volumeIcon() {
+      if (this.isMuted || this.volume === 0) return "🔇";
+      if (this.volume < 0.4) return "🔈";
+      if (this.volume < 0.7) return "🔉";
+      return "🔊";
+    }
   },
   methods: {
     play() {
@@ -169,7 +180,7 @@ new Vue({
       this.audio.currentTime = 0;
       this.audio.src = this.currentTrack.source;
       setTimeout(() => {
-        if(this.isTimerPlaying) {
+        if (this.isTimerPlaying) {
           this.audio.play();
         } else {
           this.audio.pause();
@@ -180,6 +191,59 @@ new Vue({
       this.tracks[this.currentTrackIndex].favorited = !this.tracks[
         this.currentTrackIndex
       ].favorited;
+    },
+    // Volume control
+    setVolume(val) {
+      this.volume = parseFloat(val);
+      this.audio.volume = this.volume;
+      if (this.volume > 0) {
+        this.isMuted = false;
+      }
+    },
+    toggleMute() {
+      if (this.isMuted) {
+        this.isMuted = false;
+        this.volume = this.previousVolume || 0.8;
+        this.audio.volume = this.volume;
+      } else {
+        this.previousVolume = this.volume;
+        this.isMuted = true;
+        this.volume = 0;
+        this.audio.volume = 0;
+      }
+    },
+    // Keyboard shortcut handler
+    handleKeydown(e) {
+      // Prevent default browser actions for controlled keys
+      const controlledKeys = [" ", "ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown"];
+      if (controlledKeys.includes(e.key)) {
+        e.preventDefault();
+      }
+      switch (e.key) {
+        case " ":
+          this.play();
+          break;
+        case "ArrowRight":
+          this.nextTrack();
+          break;
+        case "ArrowLeft":
+          this.prevTrack();
+          break;
+        case "ArrowUp":
+          this.setVolume(Math.min(1, this.volume + 0.1).toFixed(1));
+          break;
+        case "ArrowDown":
+          this.setVolume(Math.max(0, this.volume - 0.1).toFixed(1));
+          break;
+        case "f":
+        case "F":
+          this.favorite();
+          break;
+        case "m":
+        case "M":
+          this.toggleMute();
+          break;
+      }
     }
   },
   created() {
@@ -187,6 +251,7 @@ new Vue({
     this.currentTrack = this.tracks[0];
     this.audio = new Audio();
     this.audio.src = this.currentTrack.source;
+    this.audio.volume = this.volume;
     this.audio.ontimeupdate = function() {
       vm.generateTime();
     };
@@ -198,14 +263,21 @@ new Vue({
       this.isTimerPlaying = true;
     };
 
-    // this is optional (for preload covers)
+    // Register global keyboard shortcuts
+    window.addEventListener("keydown", this.handleKeydown);
+
+    // Preload covers
     for (let index = 0; index < this.tracks.length; index++) {
       const element = this.tracks[index];
-      let link = document.createElement('link');
+      let link = document.createElement("link");
       link.rel = "prefetch";
       link.href = element.cover;
-      link.as = "image"
-      document.head.appendChild(link)
+      link.as = "image";
+      document.head.appendChild(link);
     }
+  },
+  beforeDestroy() {
+    // Clean up keyboard listener
+    window.removeEventListener("keydown", this.handleKeydown);
   }
 });
