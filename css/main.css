@@ -384,4 +384,93 @@ body {
   opacity: 0;
 }
 
+/* Volume Control */
+.volume-control {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  gap: 8px;
+}
+
+.volume-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: transform 0.2s ease-in-out;
+  line-height: 1;
+}
+
+.volume-btn:hover {
+  transform: scale(1.2);
+}
+
+.volume-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 10px;
+  background: #d0d8e6;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #a3b3ce;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  background: #532ab9;
+  transform: scale(1.3);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #a3b3ce;
+  cursor: pointer;
+  border: none;
+}
+
+.volume-label {
+  color: #71829e;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 34px;
+  text-align: right;
+  opacity: 0.7;
+}
+
+/* Keyboard Shortcuts Hint */
+.shortcuts-hint {
+  margin-top: 12px;
+  font-size: 10px;
+  color: #acb8cc;
+  text-align: center;
+  letter-spacing: 0.3px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 576px), (max-height: 500px) {
+  .shortcuts-hint {
+    font-size: 9px;
+  }
+  .volume-control {
+    margin-top: 10px;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */
