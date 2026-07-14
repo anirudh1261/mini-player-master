@@ -71,4 +71,20 @@ Uses timeupdate event.
 
 Updates progress dynamically based on current playback time.
 
+🔄 Dynamic UI Updates
 
+Button icons change based on playback state.
+
+Track information updates when song changes.
+
+📌 Future Improvements
+
+🎶 Playlist support
+
+🔁 Shuffle & Repeat modes
+
+🌙 Dark mode toggle
+
+🎧 Upload custom songs
+
+📱 Mobile app version
