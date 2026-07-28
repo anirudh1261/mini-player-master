@@ -67,7 +67,7 @@ Event listeners handle play, pause, and track switching.
 
 📊 Progress Bar
 
-Uses timeupdate eve
+Uses timeupdate event
 
 Updates progress dynamically based on current playback time.
 
