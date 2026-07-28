@@ -81,7 +81,7 @@ Track information updates when song changes.
 
 🎶 Playlist support
 
-🔁 Shuffle & Repeat modes
+🔁 Shuffle & Repeat mod
 
 🌙 Dark mode toggle
 
