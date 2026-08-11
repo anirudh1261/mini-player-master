@@ -13,7 +13,7 @@ This project allows users to play, pause, skip, and control audio tracks with a 
 
 📊 Real-time progress bar
 
-⏱️ Track duration disp
+⏱️ Track duration display
 
 📱 Responsive UI design
 
