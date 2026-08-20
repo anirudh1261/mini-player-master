@@ -9,7 +9,7 @@ This project allows users to play, pause, skip, and control audio tracks with a 
 
 ⏭️ Next & Previous track navigation
 
-🔊 Volume cont
+🔊 Volume control
 
 📊 Real-time progress bar
 
